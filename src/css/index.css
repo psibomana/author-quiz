@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.AuthorQuiz {
+  text-align: center;
+}
+
+.authorimage {
+  max-height: 100%;
+  width: 100%;
+}
+
+.v-offset-10{
+  margin-top:10px;
+}

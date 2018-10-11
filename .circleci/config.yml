@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install
-          command: yarn install
+          command: npm install
       - run:
-          name: Test
-          command: yarn test
+          name: Run Test Cases
+          command: npm run test

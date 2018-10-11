@@ -2,12 +2,16 @@ version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: circleci/node:7.10
     steps:
       - checkout
+      - restore_cache:
+        name: Restore Yarn Package Cache
+        keys:
+          - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install
-          command: npm install
+          command: yarn install
       - run:
-          name: Run Test Cases
-          command: npm run test
+          name: Test
+          command: yarn test

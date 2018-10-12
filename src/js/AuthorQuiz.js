@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {getTurnData} from './utils';
 import '../css/bootstrap.min.css';
 import '../css/index.css';
@@ -54,6 +56,7 @@ class AuthorQuiz extends Component {
           onAnswerSelected = {this.onAnswerSelected}
           highlight = {this.state.highlight}
           onContinue = {this.onContinue}
+          onAddAuthor = {this.onAddAuthor}
         />
         <Footer />
       </div>
@@ -88,6 +91,7 @@ function AuthorTitles(props) {
     <div className="row">
       <div className="col-md-4">
         <AuthorImage author = {props.author} />
+        <p><Link to="/add">Add an author</Link></p>
       </div>
       <div className="col-md-8">
         {
@@ -107,6 +111,18 @@ function AuthorTitles(props) {
     </div>
   )
 }
+
+AuthorTitles.propTypes = {
+  author: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    imageSource: PropTypes.string.isRequired,
+    books: PropTypes.arrayOf(PropTypes.string).isRequired
+  }),
+  books: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onAnswerSelected: PropTypes.func.isRequired,
+  highlight: PropTypes.string.isRequired
+};
 
 /**
  * Individual Title Component.
@@ -179,7 +195,7 @@ function Footer(props) {
         <div className="col-md-12">
           <footer>
             <p className="text-muted credit">
-              All images are from <a href="http://commons.wikimedia.org/wiki/Main_Page">Wikemedia Commons</a>
+              All images are from <a href="http://commons.wikimedia.org/wiki/Main_Page"> Wikemedia Commons </a>
               and are in the public domain.
             </p>
           </footer>

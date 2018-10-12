@@ -1,7 +1,7 @@
 import {shuffle, sample} from 'underscore';
 
 
-const authors = [
+export const authors = [
   {
     name: 'Mark Twain',
     imageUrl: 'images/authors/marktwain.jpg',
@@ -54,5 +54,59 @@ export function getTurnData() {
       author: authors.find((author) =>
           author.books.some((title) =>
               title === answer))
+  }
+}
+
+export const authorSchema = {
+  "title": "Book",
+  "type": "object",
+  "required": [
+    "author",
+    "imageUrl",
+    "bookTemp"
+  ],
+  "properties": {
+    "author": {
+      "type": "string",
+      "title": "Author Name",
+      "minLength": 1
+    },
+    "imageUrl": {
+      "type": "string",
+      "title": "Image URL",
+      "minLength": 1
+    },
+    "bookTemp": {
+      "type": "string",
+      "title": "Book",
+      "minLength": 1
+    }
+  }
+};
+
+export function pushUnique(array, item){
+  if(!array.includes(item)) {
+      array.push(item);
+      return true;
+  }
+  return false;
+}
+
+export function hasKey(object, key, value) {
+  return object[key] === value;
+}
+
+export function addAuthorTitle(authors, author) {
+  let added = false;
+  authors.some((a) => {
+    if(hasKey(a, "name", author.name)) {
+      pushUnique(a.books, author.books[0]);
+      added = true;
+    }
+    return added;
+  });
+
+  if(!added) {
+    authors.push(author);
   }
 }

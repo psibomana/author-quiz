@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
-import './css/index.css';
 import AuthorQuiz from './js/AuthorQuiz';
 import AuthorWrapper from './js/AuthorWrapper';
+import './css/index.css';
 import * as serviceWorker from './js/serviceWorker';
 
 

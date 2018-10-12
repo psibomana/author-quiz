@@ -58,7 +58,7 @@ export function getTurnData() {
 }
 
 export const authorSchema = {
-  "title": "Book",
+  "title": "Add Author Book",
   "type": "object",
   "required": [
     "author",

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import Form from "react-jsonschema-form";
 import {authorSchema, authors, addAuthorTitle} from './utils';
 import '../css/bootstrap.min.css';
@@ -13,6 +12,11 @@ class AuthorWrapper extends Component {
   constructor() {
     super();
     this.onAddAuthor = this.onAddAuthor.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+  }
+
+  onCancel() {
+    this.props.history.push('/');
   }
 
   /**
@@ -37,10 +41,21 @@ class AuthorWrapper extends Component {
     return (
       <div className="container AuthorQuiz">
         <Header />
-        <Form schema={authorSchema}
-              noHtml5Validate
-              onSubmit={this.onAddAuthor}
-              showErrorList={false} />
+        <div className="col-md-6 offset-md-3">
+          <Form schema={authorSchema}
+                noHtml5Validate
+                onSubmit={this.onAddAuthor}
+                showErrorList={false}>
+            <div className="col-md-6 btn-toolbar offset-md-4">
+              <div className="btn-group mr-2">
+                <button type="submit" className="btn btn-primary">Submit</button>
+              </div>
+              <div className="btn-group mr-2">
+                <button type="cancel" onClick={this.onCancel} className="btn btn-danger">Cancel</button>
+              </div>
+            </div>
+          </Form>
+        </div>
       </div>
     )
   }

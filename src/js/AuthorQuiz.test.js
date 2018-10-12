@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import AuthorQuiz from './AuthorQuiz';
 
 
@@ -18,6 +19,11 @@ const state = {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AuthorQuiz {...state.data}/>, div);
+  ReactDOM.render(
+    <BrowserRouter>
+      <React.Fragment>
+        <Route exact path="/" component={AuthorQuiz} />
+      </React.Fragment>
+    </BrowserRouter>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
